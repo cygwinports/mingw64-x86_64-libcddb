@@ -1,0 +1,34 @@
+--- origsrc/libcddb-1.3.2/include/cddb/cddb_conn.h	2009-02-28 21:28:07.000000000 -0600
++++ src/libcddb-1.3.2/include/cddb/cddb_conn.h	2013-12-05 14:22:07.350420100 -0600
+@@ -65,6 +65,7 @@ typedef enum {
+     SEARCH_TITLE = 2,           /**< disc title field */
+     SEARCH_TRACK = 4,           /**< track title field */
+     SEARCH_OTHER = 8,           /**< other fields */
++#undef SEARCH_ALL	/* defined in winioctl.h */
+     SEARCH_ALL = ~0,            /**< all fields */
+ } cddb_search_t;
+ 
+--- origsrc/libcddb-1.3.2/include/cddb/cddb_ni.h	2009-02-28 21:28:07.000000000 -0600
++++ src/libcddb-1.3.2/include/cddb/cddb_ni.h	2013-12-05 14:19:50.959619000 -0600
+@@ -37,10 +37,6 @@
+    typedef void *iconv_t;       /* for code uniformity */
+ #endif
+ 
+-#ifdef HAVE_WINDOWS_H
+-#include <windows.h>
+-#endif
+-
+ #ifdef HAVE_WINSOCK2_H
+ #include <winsock2.h>
+ #ifndef ETIMEDOUT
+@@ -54,6 +50,10 @@
+ #endif
+ #endif
+ 
++#ifdef HAVE_WINDOWS_H
++#include <windows.h>
++#endif
++
+ #include "cddb/cddb_regex.h"
+ #include "cddb/cddb.h"
+ #include "cddb/cddb_conn_ni.h"
